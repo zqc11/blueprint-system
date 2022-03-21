@@ -9,7 +9,7 @@ WORKDIR /app
 COPY src /app/src
 
 # 将pom.xml文件，拷贝到工作目录下
-COPY settings.xml pom.xml /app/
+COPY pom.xml /app/
 
 # 环境变量
 ENV MYSQL_USER_NAME admin
