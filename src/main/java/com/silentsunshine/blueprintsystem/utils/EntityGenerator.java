@@ -17,9 +17,8 @@ public class EntityGenerator {
     private static final String PACKAGE_PARENT = "com.silentsunshine.blueprintsystem";
     private static List<String> tables = Arrays.asList(
             "blueprint",
-            "flowchart",
             "flow_task",
-            "form",
+            "permission",
             "user"
     );
 
