@@ -1,7 +1,5 @@
 package com.silentsunshine.blueprintsystem.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,27 +14,26 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Blueprint implements Serializable {
+public class Edge implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 图纸名称
+     * 边类型
      */
-    private String title;
+    private String type;
 
     /**
-     * 图纸类型
+     * 开始节点id
      */
-    private Integer type;
+    private Integer sourceNodeId;
 
     /**
-     * 文件地址
+     * 结束节点id
      */
-    private String location;
+    private Integer targetNodeId;
 
 
 }

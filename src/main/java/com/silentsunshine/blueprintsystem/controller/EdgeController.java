@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
  * @since 2022-03-26
  */
 @Controller
-@RequestMapping("/blueprint")
-public class BlueprintController {
+@RequestMapping("/edge")
+public class EdgeController {
 
 }

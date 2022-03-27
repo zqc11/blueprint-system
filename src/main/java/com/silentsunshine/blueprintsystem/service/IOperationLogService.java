@@ -1,10 +1,9 @@
 package com.silentsunshine.blueprintsystem.service;
 
-import com.silentsunshine.blueprintsystem.entity.Permission;
+import com.silentsunshine.blueprintsystem.entity.OperationLog;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * <p>
@@ -14,6 +13,6 @@ import java.util.Set;
  * @author zhouqichun
  * @since 2022-03-26
  */
-public interface IPermissionService extends IService<Permission> {
-    List<Integer> getTaskIds(String userId);
+public interface IOperationLogService extends IService<OperationLog> {
+    List<OperationLog> listByTaskId(Integer taskId);
 }

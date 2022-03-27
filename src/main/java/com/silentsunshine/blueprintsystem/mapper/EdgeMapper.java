@@ -1,6 +1,6 @@
 package com.silentsunshine.blueprintsystem.mapper;
 
-import com.silentsunshine.blueprintsystem.entity.FlowTask;
+import com.silentsunshine.blueprintsystem.entity.Edge;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author zhouqichun
  * @since 2022-03-26
  */
-public interface FlowTaskMapper extends BaseMapper<FlowTask> {
+public interface EdgeMapper extends BaseMapper<Edge> {
 
 }

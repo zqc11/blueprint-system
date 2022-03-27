@@ -14,7 +14,7 @@ import lombok.Setter;
  * </p>
  *
  * @author zhouqichun
- * @since 2022-03-25
+ * @since 2022-03-26
  */
 @Getter
 @Setter
@@ -37,7 +37,7 @@ public class FlowTask implements Serializable {
     /**
      * 任务描述
      */
-    private String desc;
+    private String description;
 
     /**
      * 图纸id

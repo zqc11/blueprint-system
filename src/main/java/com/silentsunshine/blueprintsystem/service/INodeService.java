@@ -1,6 +1,6 @@
 package com.silentsunshine.blueprintsystem.service;
 
-import com.silentsunshine.blueprintsystem.entity.Blueprint;
+import com.silentsunshine.blueprintsystem.entity.Node;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author zhouqichun
  * @since 2022-03-26
  */
-public interface IBlueprintService extends IService<Blueprint> {
+public interface INodeService extends IService<Node> {
 
 }

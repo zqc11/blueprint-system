@@ -1,8 +1,8 @@
 package com.silentsunshine.blueprintsystem.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,27 +16,30 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class Permission implements Serializable {
+@TableName("operation_log")
+public class OperationLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 权限类型
+     * 进行的操作
      */
-    private Integer type;
+    private String operation;
 
     /**
-     * 拥有权限的id
+     * 进行操作的人
      */
-    private String includes;
+    private String checker;
+
+    /**
+     * 操作时间
+     */
+    private LocalDateTime modifyDate;
 
     /**
      * 任务id
      */
     private Integer taskId;
-
-
 }

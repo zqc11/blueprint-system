@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author zhouqichun
- * @since 2022-03-25
+ * @since 2022-03-26
  */
 @Controller
 @RequestMapping("/permission")

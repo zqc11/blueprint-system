@@ -15,7 +15,7 @@ public class Result {
     private Object data;
 
     public static Result success(Object data){
-        return new Result(true, 2000, "成功", data);
+        return new Result(true, 200, "成功", data);
     }
 
     public static Result failure(int code, String msg){

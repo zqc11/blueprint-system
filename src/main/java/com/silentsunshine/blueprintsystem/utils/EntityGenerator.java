@@ -19,13 +19,16 @@ public class EntityGenerator {
             "blueprint",
             "flow_task",
             "permission",
-            "user"
+            "node",
+            "edge",
+            "operation_log"
     );
 
     public static void main(String[] args) {
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
                 .globalConfig(builder -> {
                     builder.author(AUTHOR) // 设置作者
+                            .fileOverride()
                             .outputDir(OUTPUT_DIR); // 指定输出目录
                 })
                 .packageConfig(builder -> {
