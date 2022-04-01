@@ -1,6 +1,7 @@
 package com.silentsunshine.blueprintsystem.controller;
 
 import com.silentsunshine.blueprintsystem.entity.OperationLog;
+import com.silentsunshine.blueprintsystem.service.IOperationLogService;
 import com.silentsunshine.blueprintsystem.service.impl.FlowTaskServiceImpl;
 import com.silentsunshine.blueprintsystem.service.impl.OperationLogServiceImpl;
 import com.silentsunshine.blueprintsystem.service.impl.PermissionServiceImpl;
@@ -28,7 +29,7 @@ import java.util.List;
 @RequestMapping("/operationLog")
 public class OperationLogController {
     @Autowired
-    OperationLogServiceImpl operationLogService;
+    IOperationLogService operationLogService;
 
     @Autowired
     PermissionServiceImpl permissionService;

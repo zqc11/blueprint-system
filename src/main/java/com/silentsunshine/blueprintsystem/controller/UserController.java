@@ -1,5 +1,6 @@
 package com.silentsunshine.blueprintsystem.controller;
 
+import com.silentsunshine.blueprintsystem.service.IUserService;
 import com.silentsunshine.blueprintsystem.service.impl.UserServiceImpl;
 import com.silentsunshine.blueprintsystem.vo.Result;
 import com.silentsunshine.blueprintsystem.vo.params.LoginParams;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 @RestController
 public class UserController {
     @Autowired
-    UserServiceImpl userService;
+    IUserService userService;
 
     /**
      * 用户登录

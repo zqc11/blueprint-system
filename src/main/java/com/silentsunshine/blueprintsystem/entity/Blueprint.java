@@ -2,13 +2,14 @@ package com.silentsunshine.blueprintsystem.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author zhouqichun
@@ -26,17 +27,11 @@ public class Blueprint implements Serializable {
     /**
      * 图纸名称
      */
-    private String title;
+    private String filename;
 
     /**
      * 图纸类型
      */
     private Integer type;
-
-    /**
-     * 文件地址
-     */
-    private String location;
-
 
 }

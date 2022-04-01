@@ -1,16 +1,20 @@
 package com.silentsunshine.blueprintsystem.mapper;
 
-import com.silentsunshine.blueprintsystem.entity.Node;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.silentsunshine.blueprintsystem.entity.Node;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author zhouqichun
  * @since 2022-03-26
  */
 public interface NodeMapper extends BaseMapper<Node> {
-
+    @Select("select task_id from node where checkers like '%,${id},%'")
+    List<Integer> getTaskIdByUserId(Integer userId);
 }

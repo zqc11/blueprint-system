@@ -36,11 +36,6 @@ public class UserVO {
     private String account;
 
     /**
-     * 密码
-     */
-    private String password;
-
-    /**
      * accessToken
      */
     private String accessToken = "eyJhbGciOiJIUzUxMiJ9.test";
@@ -54,7 +49,6 @@ public class UserVO {
         this.id = user.getId();
         this.name = user.getName();
         this.account = user.getAccount();
-        this.password = user.getPassword();
         this.department = user.getDepartment();
         this.gender = user.getGender();
         this.mobile = user.getMobile();

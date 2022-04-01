@@ -6,6 +6,8 @@ import com.silentsunshine.blueprintsystem.service.INodeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -16,5 +18,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class NodeServiceImpl extends ServiceImpl<NodeMapper, Node> implements INodeService {
-
+    @Override
+    public List<Integer> getTaskIdByUserId(Integer userId){
+        return baseMapper.getTaskIdByUserId(userId);
+    }
 }

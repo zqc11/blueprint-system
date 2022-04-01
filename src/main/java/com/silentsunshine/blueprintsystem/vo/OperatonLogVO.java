@@ -4,7 +4,6 @@ import com.silentsunshine.blueprintsystem.entity.OperationLog;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @author zhouqichun
@@ -16,7 +15,7 @@ public class OperatonLogVO {
     private String checker;
     private String status;
 
-    public OperatonLogVO(OperationLog operationLog, String title){
+    public OperatonLogVO(OperationLog operationLog, String title) {
         this.modifyDate = operationLog.getModifyDate();
         this.title = title;
         this.checker = operationLog.getChecker();

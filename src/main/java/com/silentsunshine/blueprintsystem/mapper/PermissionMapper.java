@@ -16,6 +16,6 @@ import java.util.List;
  * @since 2022-03-26
  */
 public interface PermissionMapper extends BaseMapper<Permission> {
-    @Select("select * from permission where type=1 and includes like '%${id},%'")
+    @Select("select * from permission where type=1 and includes like '%,${id},%'")
     List<Permission> getStatisticsByUserId(@Param("id") String id);
 }
