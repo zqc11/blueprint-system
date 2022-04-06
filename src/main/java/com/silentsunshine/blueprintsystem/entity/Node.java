@@ -1,24 +1,29 @@
 package com.silentsunshine.blueprintsystem.entity;
 
-import java.io.Serializable;
+import com.silentsunshine.blueprintsystem.vo.UserVO;
+import com.silentsunshine.blueprintsystem.vo.flowchart.NodeModel;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author zhouqichun
  * @since 2022-03-26
  */
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class Node implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
+    private String id;
 
     /**
      * 节点类型
@@ -53,7 +58,7 @@ public class Node implements Serializable {
     /**
      * 节点描述: properties.desc
      */
-    private String desc;
+    private String description;
 
     /**
      * 审批人id列表，逗号分割: properties.checkers
@@ -70,5 +75,22 @@ public class Node implements Serializable {
      */
     private Integer taskId;
 
+    public Node(NodeModel nodeModel, int taskId) {
+        this.id = nodeModel.getId();
+        this.taskId = taskId;
+        this.description = nodeModel.getProperties().getDescription();
+        this.status = nodeModel.getProperties().getStatus();
+        this.x = nodeModel.getX();
+        this.y = nodeModel.getY();
+        this.type = nodeModel.getType();
+        this.title = nodeModel.getText().getValue();
+        this.textX = nodeModel.getText().getX();
+        this.textY = nodeModel.getText().getY();
+        StringBuilder stringBuilder = new StringBuilder(",");
+        for (UserVO checker : nodeModel.getProperties().getCheckers()) {
+            stringBuilder.append(checker.getId()).append(",");
+        }
+        this.checkers = stringBuilder.toString();
+    }
 
 }

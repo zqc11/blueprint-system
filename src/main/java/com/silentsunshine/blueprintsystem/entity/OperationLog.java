@@ -3,7 +3,10 @@ package com.silentsunshine.blueprintsystem.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -14,8 +17,8 @@ import lombok.Setter;
  * @author zhouqichun
  * @since 2022-03-26
  */
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 @TableName("operation_log")
 public class OperationLog implements Serializable {
 

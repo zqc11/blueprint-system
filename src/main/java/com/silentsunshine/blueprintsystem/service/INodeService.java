@@ -2,6 +2,7 @@ package com.silentsunshine.blueprintsystem.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.silentsunshine.blueprintsystem.entity.Node;
+import com.silentsunshine.blueprintsystem.vo.flowchart.NodeModel;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ import java.util.List;
  */
 public interface INodeService extends IService<Node> {
     List<Integer> getTaskIdByUserId(Integer userId);
+    int insertNodes(List<NodeModel> nodes, int taskId);
 }

@@ -2,7 +2,10 @@ package com.silentsunshine.blueprintsystem.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.silentsunshine.blueprintsystem.vo.BlueprintVO;
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -15,8 +18,8 @@ import java.io.Serializable;
  * @author zhouqichun
  * @since 2022-03-26
  */
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class Blueprint implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,9 +32,19 @@ public class Blueprint implements Serializable {
      */
     private String filename;
 
+    private String location;
+
     /**
      * 图纸类型
      */
-    private Integer type;
+    private String type;
 
+    private Integer taskId;
+
+    public Blueprint(BlueprintVO blueprintVO, int taskId){
+        this.filename = blueprintVO.getFilename();
+        this.type = blueprintVO.getType();
+        this.location = blueprintVO.getLocation();
+        this.taskId = taskId;
+    }
 }

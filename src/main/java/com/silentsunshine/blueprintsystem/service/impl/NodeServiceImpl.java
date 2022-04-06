@@ -4,6 +4,7 @@ import com.silentsunshine.blueprintsystem.entity.Node;
 import com.silentsunshine.blueprintsystem.mapper.NodeMapper;
 import com.silentsunshine.blueprintsystem.service.INodeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.silentsunshine.blueprintsystem.vo.flowchart.NodeModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +22,15 @@ public class NodeServiceImpl extends ServiceImpl<NodeMapper, Node> implements IN
     @Override
     public List<Integer> getTaskIdByUserId(Integer userId){
         return baseMapper.getTaskIdByUserId(userId);
+    }
+
+    @Override
+    public int insertNodes(List<NodeModel> nodes, int taskId){
+        int count = 0;
+        for (NodeModel node : nodes) {
+            Node newNode = new Node(node, taskId);
+            count += baseMapper.insert(newNode);
+        }
+        return count;
     }
 }

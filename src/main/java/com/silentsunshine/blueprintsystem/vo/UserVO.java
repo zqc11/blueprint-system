@@ -2,11 +2,13 @@ package com.silentsunshine.blueprintsystem.vo;
 
 import com.silentsunshine.blueprintsystem.entity.User;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author zhouqichun
  **/
 @Data
+@NoArgsConstructor
 public class UserVO {
     private Long id;
 
@@ -43,7 +45,7 @@ public class UserVO {
     /**
      * expires token过期时间
      */
-    private Long expires = 1800000L;
+    private Long expires = 1800000L * 5;
 
     public UserVO(User user) {
         this.id = user.getId();

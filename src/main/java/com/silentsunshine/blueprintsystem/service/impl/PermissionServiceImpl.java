@@ -4,12 +4,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.silentsunshine.blueprintsystem.entity.Permission;
 import com.silentsunshine.blueprintsystem.mapper.PermissionMapper;
 import com.silentsunshine.blueprintsystem.service.IPermissionService;
+import com.silentsunshine.blueprintsystem.vo.UserVO;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -25,10 +23,29 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     @Override
     public List<Integer> getTaskIds(String userId) {
         List<Permission> permissions = baseMapper.getStatisticsByUserId(userId);
-        List<Integer> taskIds = permissions.stream()
-                .map(item -> item.getTaskId())
-                .collect(Collectors.toList());
         // 查询permission表中type==2 and includes 包含 userId的记录
-        return taskIds;
+        return permissions.stream()
+                .map(Permission::getTaskId)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public int insertMaintain(List<UserVO> maintain, int taskId) {
+        StringBuilder stringBuilder = new StringBuilder(",");
+        for (UserVO userVO : maintain) {
+            stringBuilder.append(userVO.getId()).append(",");
+        }
+        Permission permission = new Permission(1, stringBuilder.toString(), taskId);
+        return baseMapper.insert(permission);
+    }
+
+    @Override
+    public int insertStatistics(List<UserVO> statistics, int taskId) {
+        StringBuilder stringBuilder = new StringBuilder(",");
+        for (UserVO userVO : statistics) {
+            stringBuilder.append(userVO.getId()).append(",");
+        }
+        Permission permission = new Permission(2, stringBuilder.toString(), taskId);
+        return baseMapper.insert(permission);
     }
 }

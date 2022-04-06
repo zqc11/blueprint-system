@@ -5,8 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 
 /**
  * <p>
@@ -16,8 +16,8 @@ import lombok.Setter;
  * @author zhouqichun
  * @since 2022-03-26
  */
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 @TableName("flow_task")
 public class FlowTask implements Serializable {
 
@@ -40,29 +40,9 @@ public class FlowTask implements Serializable {
     private String description;
 
     /**
-     * 图纸id
-     */
-    private String blueprints;
-
-    /**
      * 表单json
      */
     private String form;
-
-    /**
-     * 流程json
-     */
-    private String flowchart;
-
-    /**
-     * 维护权限id
-     */
-    private Integer maintainPermissionId;
-
-    /**
-     * 统计权限id
-     */
-    private Integer statisticsPermissionId;
 
     /**
      * 创建时间
@@ -74,5 +54,12 @@ public class FlowTask implements Serializable {
      */
     private LocalDateTime modifyDate;
 
+    public FlowTask(String title, String description, String form, LocalDateTime createDate, LocalDateTime modifyDate){
+        this.title = title;
+        this.description = description;
+        this.form = form;
+        this.createDate = createDate;
+        this.modifyDate = modifyDate;
+    }
 
 }
