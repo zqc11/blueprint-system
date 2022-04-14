@@ -28,13 +28,31 @@ public class BlueprintServiceImpl extends ServiceImpl<BlueprintMapper, Blueprint
     @Override
     public int insertBlueprints(List<BlueprintVO> blueprints, int taskId) {
         int count = 0;
-//        if (blueprints == null || blueprints.size() == 0) {
-//            return count;
-//        }
         for (BlueprintVO blueprint : blueprints) {
             Blueprint newBlueprint = new Blueprint(blueprint, taskId);
             count += baseMapper.insert(newBlueprint);
         }
         return count;
+    }
+
+    @Override
+    public int updateDrawData(int id, String drawData) {
+        return baseMapper.updateDrawDataById(id, drawData);
+    }
+
+    @Override
+    public int updateSnapData(int id, String snapData) {
+        String newSnapData = snapData.replace("\\", "\\\\");
+        return baseMapper.updateSnapDataById(id, newSnapData);
+    }
+
+    @Override
+    public String getDrawData(int id) {
+        return baseMapper.getDrawDataById(id);
+    }
+
+    @Override
+    public String getSnapData(int id) {
+        return baseMapper.getSnapDataById(id);
     }
 }

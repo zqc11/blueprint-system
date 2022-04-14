@@ -1,21 +1,25 @@
 package com.silentsunshine.blueprintsystem.controller;
 
 import com.silentsunshine.blueprintsystem.entity.Blueprint;
+import com.silentsunshine.blueprintsystem.entity.Edge;
 import com.silentsunshine.blueprintsystem.entity.FlowTask;
+import com.silentsunshine.blueprintsystem.entity.Node;
 import com.silentsunshine.blueprintsystem.service.*;
 import com.silentsunshine.blueprintsystem.vo.BlueprintVO;
 import com.silentsunshine.blueprintsystem.vo.Result;
 import com.silentsunshine.blueprintsystem.vo.TaskVO;
-import com.silentsunshine.blueprintsystem.vo.UserVO;
 import com.silentsunshine.blueprintsystem.vo.flowchart.EdgeModel;
 import com.silentsunshine.blueprintsystem.vo.flowchart.NodeModel;
 import com.silentsunshine.blueprintsystem.vo.params.FlowTaskParams;
+import com.silentsunshine.blueprintsystem.vo.params.FormDataParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -45,13 +49,20 @@ public class FlowTaskController {
 
     @GetMapping("/{id}")
     public Result listTask(@PathVariable("id") Integer id) {
-        List<Integer> taskIds = nodeService.getTaskIdByUserId(id);
+        List<Node> nodes = nodeService.getNodeByUserId(id);
         List<TaskVO> tasks = new ArrayList<>();
-        for (Integer taskId : taskIds) {
+        Map<Integer, List<Node>> taskMap = nodes.stream().collect(Collectors.groupingBy(Node::getTaskId));
+
+        for (Map.Entry<Integer, List<Node>> entry : taskMap.entrySet()) {
+            int taskId = entry.getKey();
             FlowTask flowTask = flowTaskService.getById(taskId);
+            List<Node> nodeList = entry.getValue();
+            List<Edge> edgeList = edgeService.getEdgeByTaskId(taskId);
+            FlowTaskParams.FlowChart flowChart = new FlowTaskParams.FlowChart(nodeList, edgeList);
             List<Blueprint> blueprints = blueprintService.getAllByTaskId(taskId);
-            tasks.add(new TaskVO(flowTask, blueprints));
+            tasks.add(new TaskVO(flowTask, blueprints, flowChart));
         }
+
         tasks.sort(Comparator.comparing(TaskVO::getModifyDate));
         return Result.success(tasks);
     }
@@ -76,11 +87,20 @@ public class FlowTaskController {
 
         // Permission
         FlowTaskParams.Permission permission = flowTaskParams.getPermission();
-        List<UserVO> maintain = permission.getMaintain();
-        List<UserVO> statistics = permission.getStatistics();
+        List<String> maintain = permission.getMaintain();
+        List<String> statistics = permission.getStatistics();
         permissionService.insertMaintain(maintain, taskId);
         permissionService.insertStatistics(statistics, taskId);
 
+        return Result.success(null);
+    }
+
+    @PostMapping("/saveFormData")
+    public Result saveFormData(@RequestBody FormDataParams formDataParams) {
+        int id = formDataParams.getId();
+        String formData = formDataParams.getFormData();
+        String newFormData = formData.replace("\\", "\\\\");
+        flowTaskService.updateFormDataById(id, newFormData);
         return Result.success(null);
     }
 }

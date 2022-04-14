@@ -41,6 +41,10 @@ public class Blueprint implements Serializable {
 
     private Integer taskId;
 
+    private String drawData;
+
+    private String snapData;
+
     public Blueprint(BlueprintVO blueprintVO, int taskId){
         this.filename = blueprintVO.getFilename();
         this.type = blueprintVO.getType();

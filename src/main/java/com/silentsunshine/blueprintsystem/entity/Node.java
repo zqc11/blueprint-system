@@ -87,8 +87,8 @@ public class Node implements Serializable {
         this.textX = nodeModel.getText().getX();
         this.textY = nodeModel.getText().getY();
         StringBuilder stringBuilder = new StringBuilder(",");
-        for (UserVO checker : nodeModel.getProperties().getCheckers()) {
-            stringBuilder.append(checker.getId()).append(",");
+        for (String checker : nodeModel.getProperties().getCheckers()) {
+            stringBuilder.append(checker).append(",");
         }
         this.checkers = stringBuilder.toString();
     }

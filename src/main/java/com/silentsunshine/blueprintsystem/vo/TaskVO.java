@@ -2,6 +2,7 @@ package com.silentsunshine.blueprintsystem.vo;
 
 import com.silentsunshine.blueprintsystem.entity.Blueprint;
 import com.silentsunshine.blueprintsystem.entity.FlowTask;
+import com.silentsunshine.blueprintsystem.vo.params.FlowTaskParams;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -30,7 +31,17 @@ public class TaskVO {
     /**
      * 表单json数据
      */
-    private String form;
+    private String formJson;
+
+    /**
+     * 表单data
+     */
+    private String formData;
+
+    /**
+     * 流程
+     */
+    private FlowTaskParams.FlowChart flowChart;
 
     /**
      * 最近修改时间
@@ -48,13 +59,15 @@ public class TaskVO {
     private List<Blueprint> blueprints;
 
 
-    public TaskVO(FlowTask flowTask, List<Blueprint> blueprints) {
+    public TaskVO(FlowTask flowTask, List<Blueprint> blueprints, FlowTaskParams.FlowChart flowChart) {
         this.id = flowTask.getId();
         this.title = flowTask.getTitle();
-        this.form = flowTask.getForm();
+        this.formJson = flowTask.getFormJson();
+        this.formData = flowTask.getFormData();
         this.description = flowTask.getDescription();
         this.modifyDate = flowTask.getModifyDate();
         this.createDate = flowTask.getCreateDate();
         this.blueprints = blueprints;
+        this.flowChart = flowChart;
     }
 }

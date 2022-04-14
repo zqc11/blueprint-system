@@ -14,4 +14,5 @@ import com.silentsunshine.blueprintsystem.vo.params.FlowTaskParams;
  */
 public interface IFlowTaskService extends IService<FlowTask> {
     int insertBackAutoId(FlowTaskParams flowTaskParams);
+    int updateFormDataById(int id, String formData);
 }

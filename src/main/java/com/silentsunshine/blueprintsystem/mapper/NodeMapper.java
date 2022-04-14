@@ -15,6 +15,6 @@ import java.util.List;
  * @since 2022-03-26
  */
 public interface NodeMapper extends BaseMapper<Node> {
-    @Select("select task_id from node where checkers like '%,${id},%'")
-    List<Integer> getTaskIdByUserId(Integer userId);
+    @Select("select * from node where checkers like '%,${id},%'")
+    List<Node> getNodeByUserId(Integer userId);
 }

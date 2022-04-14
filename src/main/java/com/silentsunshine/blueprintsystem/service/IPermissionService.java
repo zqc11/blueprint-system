@@ -17,6 +17,6 @@ import java.util.Set;
  */
 public interface IPermissionService extends IService<Permission> {
     List<Integer> getTaskIds(String userId);
-    int insertMaintain(List<UserVO> maintain, int taskId);
-    int insertStatistics(List<UserVO> statistics, int taskId);
+    int insertMaintain(List<String> maintain, int taskId);
+    int insertStatistics(List<String> statistics, int taskId);
 }

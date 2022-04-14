@@ -3,14 +3,15 @@ package com.silentsunshine.blueprintsystem.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import lombok.*;
-
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author zhouqichun
@@ -42,7 +43,12 @@ public class FlowTask implements Serializable {
     /**
      * 表单json
      */
-    private String form;
+    private String formJson;
+
+    /**
+     * 表单data
+     */
+    private String formData;
 
     /**
      * 创建时间
@@ -54,10 +60,10 @@ public class FlowTask implements Serializable {
      */
     private LocalDateTime modifyDate;
 
-    public FlowTask(String title, String description, String form, LocalDateTime createDate, LocalDateTime modifyDate){
+    public FlowTask(String title, String description, String formJson, LocalDateTime createDate, LocalDateTime modifyDate) {
         this.title = title;
         this.description = description;
-        this.form = form;
+        this.formJson = formJson;
         this.createDate = createDate;
         this.modifyDate = modifyDate;
     }

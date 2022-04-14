@@ -1,7 +1,9 @@
 package com.silentsunshine.blueprintsystem.vo.flowchart;
 
 import com.silentsunshine.blueprintsystem.vo.UserVO;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -9,6 +11,8 @@ import java.util.List;
  * @author zhouqichun
  **/
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class NodeProperties {
     /**
      * 节点描述
@@ -19,5 +23,5 @@ public class NodeProperties {
      * 未开始、进行中、已完成
      */
     private String status;
-    private List<UserVO> checkers;
+    private List<String> checkers;
 }

@@ -1,13 +1,16 @@
 package com.silentsunshine.blueprintsystem.vo.params;
 
+import com.silentsunshine.blueprintsystem.entity.Edge;
+import com.silentsunshine.blueprintsystem.entity.Node;
 import com.silentsunshine.blueprintsystem.vo.BlueprintVO;
 import com.silentsunshine.blueprintsystem.vo.UserVO;
 import com.silentsunshine.blueprintsystem.vo.flowchart.EdgeModel;
 import com.silentsunshine.blueprintsystem.vo.flowchart.NodeModel;
 import lombok.Data;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author zhouqichun
@@ -22,16 +25,28 @@ public class FlowTaskParams {
     private List<BlueprintVO> blueprints;
 
     @Data
+    @NoArgsConstructor
+    public static class FlowChart {
+        List<NodeModel> nodes;
+        List<EdgeModel> edges;
+
+        public FlowChart(List<Node> nodes, List<Edge> edges) {
+            if (nodes != null) {
+                this.nodes = nodes.stream()
+                        .map(NodeModel::new)
+                        .collect(Collectors.toList());
+            }
+            if (edges != null) {
+                this.edges = edges.stream().map(EdgeModel::new).collect(Collectors.toList());
+            }
+        }
+    }
+
+    @Data
     public class BaseInfo {
         String desc;
         String title;
         String type;
-    }
-
-    @Data
-    public class FlowChart {
-        List<NodeModel> nodes;
-        List<EdgeModel> edges;
     }
 
     @Data
@@ -41,7 +56,7 @@ public class FlowTaskParams {
 
     @Data
     public class Permission {
-        List<UserVO> maintain;
-        List<UserVO> statistics;
+        List<String> maintain;
+        List<String> statistics;
     }
 }

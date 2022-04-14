@@ -30,20 +30,20 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     }
 
     @Override
-    public int insertMaintain(List<UserVO> maintain, int taskId) {
+    public int insertMaintain(List<String> maintain, int taskId) {
         StringBuilder stringBuilder = new StringBuilder(",");
-        for (UserVO userVO : maintain) {
-            stringBuilder.append(userVO.getId()).append(",");
+        for (String userId : maintain) {
+            stringBuilder.append(userId).append(",");
         }
         Permission permission = new Permission(1, stringBuilder.toString(), taskId);
         return baseMapper.insert(permission);
     }
 
     @Override
-    public int insertStatistics(List<UserVO> statistics, int taskId) {
+    public int insertStatistics(List<String> statistics, int taskId) {
         StringBuilder stringBuilder = new StringBuilder(",");
-        for (UserVO userVO : statistics) {
-            stringBuilder.append(userVO.getId()).append(",");
+        for (String userId : statistics) {
+            stringBuilder.append(userId).append(",");
         }
         Permission permission = new Permission(2, stringBuilder.toString(), taskId);
         return baseMapper.insert(permission);

@@ -14,4 +14,5 @@ import com.silentsunshine.blueprintsystem.vo.Result;
  */
 public interface IUserService extends IService<User> {
     Result getUser(String account, String password);
+    User getUserById(String id);
 }

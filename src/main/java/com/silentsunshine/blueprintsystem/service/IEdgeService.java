@@ -16,4 +16,5 @@ import java.util.List;
  */
 public interface IEdgeService extends IService<Edge> {
     int insertEdges(List<EdgeModel> edges, int taskId);
+    List<Edge> getEdgeByTaskId(int taskId);
 }

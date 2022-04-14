@@ -20,8 +20,8 @@ import java.util.List;
 @Service
 public class NodeServiceImpl extends ServiceImpl<NodeMapper, Node> implements INodeService {
     @Override
-    public List<Integer> getTaskIdByUserId(Integer userId){
-        return baseMapper.getTaskIdByUserId(userId);
+    public List<Node> getNodeByUserId(Integer userId){
+        return baseMapper.getNodeByUserId(userId);
     }
 
     @Override

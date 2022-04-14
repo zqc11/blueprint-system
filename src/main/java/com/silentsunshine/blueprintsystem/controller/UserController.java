@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -63,7 +62,15 @@ public class UserController {
 
     @GetMapping("/friends/{id}")
     public Result getFriends(@PathVariable("id") String id) {
-        List<UserVO> friends = Collections.singletonList(new UserVO(userService.getById(id)));
+        List<UserVO> friends = userService.list().stream()
+                .map(UserVO::new)
+                .collect(Collectors.toList());
         return Result.success(friends);
+    }
+
+    @GetMapping("/user/{id}")
+    public Result getUser(@PathVariable("id") String id) {
+        User user = userService.getUserById(id);
+        return Result.success(new UserVO(user));
     }
 }

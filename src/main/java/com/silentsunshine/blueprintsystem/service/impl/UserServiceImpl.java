@@ -31,4 +31,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         return result;
     }
+
+    @Override
+    public User getUserById(String id){
+        return baseMapper.selectById(id);
+    }
 }

@@ -1,14 +1,14 @@
 package com.silentsunshine.blueprintsystem.service;
 
-import com.silentsunshine.blueprintsystem.entity.Blueprint;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.silentsunshine.blueprintsystem.entity.Blueprint;
 import com.silentsunshine.blueprintsystem.vo.BlueprintVO;
 
 import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author zhouqichun
@@ -16,5 +16,14 @@ import java.util.List;
  */
 public interface IBlueprintService extends IService<Blueprint> {
     List<Blueprint> getAllByTaskId(int taskId);
+
     int insertBlueprints(List<BlueprintVO> blueprints, int taskId);
+
+    int updateDrawData(int id, String drawData);
+
+    int updateSnapData(int id, String snapData);
+
+    String getDrawData(int id);
+
+    String getSnapData(int id);
 }

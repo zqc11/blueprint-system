@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.silentsunshine.blueprintsystem.vo.flowchart.EdgeModel;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,5 +29,10 @@ public class EdgeServiceImpl extends ServiceImpl<EdgeMapper, Edge> implements IE
             count += baseMapper.insert(newEdge);
         }
         return count;
+    }
+
+    @Override
+    public List<Edge> getEdgeByTaskId(int taskId) {
+        return baseMapper.selectByMap(Collections.singletonMap("task_id", taskId));
     }
 }

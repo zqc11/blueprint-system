@@ -41,6 +41,12 @@ public class Edge implements Serializable {
      */
     private String targetNodeId;
 
+    private Integer x;
+
+    private Integer y;
+
+    private String value;
+
     /**
      * 出口描述
      */
@@ -62,6 +68,9 @@ public class Edge implements Serializable {
         this.taskId = taskId;
         this.sourceNodeId = edgeModel.getSourceNodeId();
         this.targetNodeId = edgeModel.getTargetNodeId();
+        this.x = edgeModel.getText().getX();
+        this.y = edgeModel.getText().getY();
+        this.value = edgeModel.getText().getValue();
         this.description = edgeModel.getProperties().getDescription();
         this.outCondition = edgeModel.getProperties().getCondition();
         this.startPoint = edgeModel.getStartPoint().toString();

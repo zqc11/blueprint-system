@@ -28,4 +28,9 @@ public class FlowTaskServiceImpl extends ServiceImpl<FlowTaskMapper, FlowTask> i
         baseMapper.insert(flowTask);
         return flowTask.getId();
     }
+
+    @Override
+    public int updateFormDataById(int id, String formData) {
+        return baseMapper.updateFormDataById(id, formData);
+    }
 }
