@@ -1,13 +1,12 @@
 package com.silentsunshine.blueprintsystem.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.silentsunshine.blueprintsystem.entity.OperationLog;
 import com.silentsunshine.blueprintsystem.mapper.OperationLogMapper;
 import com.silentsunshine.blueprintsystem.service.IOperationLogService;
+import com.silentsunshine.blueprintsystem.vo.OperatonLogVO;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,7 +20,12 @@ import java.util.List;
 @Service
 public class OperationLogServiceImpl extends ServiceImpl<OperationLogMapper, OperationLog> implements IOperationLogService {
     @Override
-    public List<OperationLog> listByTaskId(Integer taskId) {
-        return this.listByMap(Collections.singletonMap("task_id", taskId));
+    public List<OperatonLogVO> listAllByTaskIdAndNodeId(int taskId) {
+        return baseMapper.listAllByTaskIdAndNodeId(taskId);
+    }
+
+    @Override
+    public int addOperationLog(OperationLog operationLog) {
+        return baseMapper.insert(operationLog);
     }
 }

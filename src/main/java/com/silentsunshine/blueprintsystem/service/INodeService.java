@@ -17,4 +17,5 @@ import java.util.List;
 public interface INodeService extends IService<Node> {
     List<Node> getNodeByUserId(Integer userId);
     int insertNodes(List<NodeModel> nodes, int taskId);
+    Node updateNodeStatus(int orderNum, int taskId, String status);
 }

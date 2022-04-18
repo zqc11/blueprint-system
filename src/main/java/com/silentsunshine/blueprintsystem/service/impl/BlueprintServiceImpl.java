@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.silentsunshine.blueprintsystem.entity.Blueprint;
 import com.silentsunshine.blueprintsystem.mapper.BlueprintMapper;
 import com.silentsunshine.blueprintsystem.service.IBlueprintService;
+import com.silentsunshine.blueprintsystem.utils.Parser;
 import com.silentsunshine.blueprintsystem.vo.BlueprintVO;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,7 @@ public class BlueprintServiceImpl extends ServiceImpl<BlueprintMapper, Blueprint
 
     @Override
     public int updateSnapData(int id, String snapData) {
-        String newSnapData = snapData.replace("\\", "\\\\");
+        String newSnapData = Parser.convertJsonStringfy(snapData);
         return baseMapper.updateSnapDataById(id, newSnapData);
     }
 

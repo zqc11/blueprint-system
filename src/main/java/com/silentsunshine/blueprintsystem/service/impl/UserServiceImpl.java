@@ -22,7 +22,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public Result getUser(String account, String password) {
         Result result;
-        User user = baseMapper.selectOne(new QueryWrapper<User>().eq("account", account));
+        User user = getUserByAccount(account);
         if (user == null || ! user.getPassword().equals(password)) {
             result = Result.failure(400, "帐户不存在或密码错误");
         } else {
@@ -33,7 +33,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public User getUserById(String id){
+    public User getUserById(String id) {
         return baseMapper.selectById(id);
+    }
+
+    @Override
+    public User getUserByAccount(String account) {
+        return baseMapper.selectOne(new QueryWrapper<User>().eq("account", account));
+    }
+
+    @Override
+    public int insertUser(User user) {
+        return baseMapper.insert(user);
     }
 }

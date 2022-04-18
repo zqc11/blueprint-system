@@ -1,7 +1,9 @@
 package com.silentsunshine.blueprintsystem.vo;
 
 import com.silentsunshine.blueprintsystem.entity.OperationLog;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -9,6 +11,8 @@ import java.time.LocalDateTime;
  * @author zhouqichun
  **/
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OperatonLogVO {
     private LocalDateTime modifyDate;
     private String title;

@@ -23,5 +23,8 @@ public class NodeProperties {
      * 未开始、进行中、已完成
      */
     private String status;
+    private int orderNum;
     private List<String> checkers;
+    private List<String> hasPassed;
+    private List<String> hasRejected;
 }

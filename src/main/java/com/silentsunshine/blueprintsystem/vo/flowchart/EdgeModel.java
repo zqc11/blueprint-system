@@ -32,7 +32,7 @@ public class EdgeModel {
         this.startPoint = Point.parseString2Point(edge.getStartPoint());
         this.endPoint = Point.parseString2Point(edge.getEndPoint());
         this.pointsList = null;
-        this.properties = new EdgeProperties(edge.getDescription(), edge.getOutCondition());
+        this.properties = new EdgeProperties(edge.getDescription(), edge.getOutCondition(), edge.getOutType());
     }
 
 }

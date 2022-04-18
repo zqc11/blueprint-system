@@ -1,11 +1,9 @@
 package com.silentsunshine.blueprintsystem.entity;
 
-import com.silentsunshine.blueprintsystem.vo.UserVO;
+import com.silentsunshine.blueprintsystem.utils.Parser;
 import com.silentsunshine.blueprintsystem.vo.flowchart.NodeModel;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -75,22 +73,28 @@ public class Node implements Serializable {
      */
     private Integer taskId;
 
+    private String hasRejected;
+
+    private String hasPassed;
+
+    /**
+     * 顺序
+     */
+    private int orderNum;
+
     public Node(NodeModel nodeModel, int taskId) {
         this.id = nodeModel.getId();
         this.taskId = taskId;
         this.description = nodeModel.getProperties().getDescription();
         this.status = nodeModel.getProperties().getStatus();
+        this.orderNum = nodeModel.getProperties().getOrderNum();
         this.x = nodeModel.getX();
         this.y = nodeModel.getY();
         this.type = nodeModel.getType();
         this.title = nodeModel.getText().getValue();
         this.textX = nodeModel.getText().getX();
         this.textY = nodeModel.getText().getY();
-        StringBuilder stringBuilder = new StringBuilder(",");
-        for (String checker : nodeModel.getProperties().getCheckers()) {
-            stringBuilder.append(checker).append(",");
-        }
-        this.checkers = stringBuilder.toString();
+        this.checkers = Parser.unparse(nodeModel.getProperties().getCheckers());
     }
 
 }

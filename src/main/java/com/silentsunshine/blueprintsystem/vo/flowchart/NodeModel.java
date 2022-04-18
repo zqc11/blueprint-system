@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static com.silentsunshine.blueprintsystem.utils.Parser.parseUserId;
 
 /**
  * @author zhouqichun
@@ -29,9 +29,10 @@ public class NodeModel {
         this.type = node.getType();
         this.x = node.getX();
         this.y = node.getY();
-        List<String> checkers = Arrays.stream(node.getCheckers().split(","))
-                .filter(checker -> checker != null && ! checker.isEmpty())
-                .collect(Collectors.toList());
-        this.properties = new NodeProperties(node.getDescription(), node.getStatus(), checkers);
+        List<String> checkers = parseUserId(node.getCheckers());
+        List<String> hasPassed = parseUserId(node.getHasPassed());
+        List<String> hasRejected = parseUserId(node.getHasRejected());
+        this.properties = new NodeProperties(node.getDescription(), node.getStatus(), node.getOrderNum(), checkers, hasPassed, hasRejected);
     }
+
 }

@@ -3,6 +3,7 @@ package com.silentsunshine.blueprintsystem.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.silentsunshine.blueprintsystem.entity.FlowTemplate;
 import com.silentsunshine.blueprintsystem.vo.FlowTemplateVO;
+import com.silentsunshine.blueprintsystem.vo.params.FlowTemplateParams;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ import java.util.List;
  */
 public interface IFlowTemplateService extends IService<FlowTemplate> {
     List<FlowTemplateVO> getAllFlowTemplate();
+
+    int addFlowTemplate(FlowTemplateParams flowTemplateParams);
 }

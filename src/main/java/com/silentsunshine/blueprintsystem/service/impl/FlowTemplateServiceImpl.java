@@ -8,6 +8,7 @@ import com.silentsunshine.blueprintsystem.service.IFlowTemplateService;
 import com.silentsunshine.blueprintsystem.service.IUserService;
 import com.silentsunshine.blueprintsystem.vo.FlowTemplateVO;
 import com.silentsunshine.blueprintsystem.vo.UserVO;
+import com.silentsunshine.blueprintsystem.vo.params.FlowTemplateParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +37,11 @@ public class FlowTemplateServiceImpl extends ServiceImpl<FlowTemplateMapper, Flo
                     return new FlowTemplateVO(item, new UserVO(user));
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public int addFlowTemplate(FlowTemplateParams flowTemplateParams) {
+        FlowTemplate flowTemplate = new FlowTemplate(flowTemplateParams);
+        return baseMapper.insert(flowTemplate);
     }
 }

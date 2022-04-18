@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class EdgeProperties {
     private String description;
     private String condition;
+    private String outType;
 }

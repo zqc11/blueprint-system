@@ -47,5 +47,4 @@ public class Permission implements Serializable {
         this.includes = includes;
         this.taskId = taskId;
     }
-
 }

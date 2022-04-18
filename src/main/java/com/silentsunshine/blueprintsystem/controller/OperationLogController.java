@@ -1,9 +1,7 @@
 package com.silentsunshine.blueprintsystem.controller;
 
-import com.silentsunshine.blueprintsystem.entity.OperationLog;
 import com.silentsunshine.blueprintsystem.service.IOperationLogService;
 import com.silentsunshine.blueprintsystem.service.impl.FlowTaskServiceImpl;
-import com.silentsunshine.blueprintsystem.service.impl.OperationLogServiceImpl;
 import com.silentsunshine.blueprintsystem.service.impl.PermissionServiceImpl;
 import com.silentsunshine.blueprintsystem.vo.OperatonLogVO;
 import com.silentsunshine.blueprintsystem.vo.Result;
@@ -45,12 +43,8 @@ public class OperationLogController {
         List<OperatonLogVO> operatonLogVOList = new ArrayList<>();
         // 根据task_id查询operation_log表
         for (Integer taskId : taskIds) {
-            List<OperationLog> list = operationLogService.listByTaskId(taskId);
-            // 任务标题
-            String title = flowTaskService.getById(taskId).getTitle();
-            for (OperationLog operationLog : list) {
-                operatonLogVOList.add(new OperatonLogVO(operationLog, title));
-            }
+            List<OperatonLogVO> list = operationLogService.listAllByTaskIdAndNodeId(taskId);
+            operatonLogVOList.addAll(list);
         }
         operatonLogVOList.sort(Comparator.comparing(OperatonLogVO::getModifyDate));
         return Result.success(operatonLogVOList);

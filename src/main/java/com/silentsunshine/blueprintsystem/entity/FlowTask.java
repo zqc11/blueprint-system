@@ -67,5 +67,4 @@ public class FlowTask implements Serializable {
         this.createDate = createDate;
         this.modifyDate = modifyDate;
     }
-
 }

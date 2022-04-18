@@ -33,7 +33,6 @@ public class UserController {
      */
     @PostMapping("/login")
     public Result login(@RequestBody LoginParams login) {
-        System.out.println("account:" + login.getAccount() + " password: " + login.getPassword());
         if (login.getAccount().isEmpty() || login.getPassword().isEmpty()) {
             return Result.failure(401, "帐户或密码不能为空");
         }
@@ -46,7 +45,17 @@ public class UserController {
      * @return Result
      */
     @PostMapping("/register")
-    public Result register() {
+    public Result register(@RequestBody User user) {
+        userService.insertUser(user);
+        return Result.success(null);
+    }
+
+    @GetMapping("/validateAccount/{account}")
+    public Result validateAccount(@PathVariable("account") String account) {
+        User user = userService.getUserByAccount(account);
+        if (user != null) {
+            return Result.failure(400, "用户名已存在");
+        }
         return Result.success(null);
     }
 

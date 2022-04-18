@@ -57,6 +57,11 @@ public class Edge implements Serializable {
      */
     private String outCondition;
 
+    /**
+     * 出口类型
+     */
+    private String outType;
+
     private String startPoint;
 
     private String endPoint;
@@ -73,6 +78,7 @@ public class Edge implements Serializable {
         this.value = edgeModel.getText().getValue();
         this.description = edgeModel.getProperties().getDescription();
         this.outCondition = edgeModel.getProperties().getCondition();
+        this.outType = edgeModel.getProperties().getOutType();
         this.startPoint = edgeModel.getStartPoint().toString();
         this.endPoint = edgeModel.getEndPoint().toString();
         this.pointsList = edgeModel.getPointsList().toString();

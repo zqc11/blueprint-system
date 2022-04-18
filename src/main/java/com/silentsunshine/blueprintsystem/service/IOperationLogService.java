@@ -2,6 +2,7 @@ package com.silentsunshine.blueprintsystem.service;
 
 import com.silentsunshine.blueprintsystem.entity.OperationLog;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.silentsunshine.blueprintsystem.vo.OperatonLogVO;
 
 import java.util.List;
 
@@ -14,5 +15,6 @@ import java.util.List;
  * @since 2022-03-26
  */
 public interface IOperationLogService extends IService<OperationLog> {
-    List<OperationLog> listByTaskId(Integer taskId);
+    List<OperatonLogVO> listAllByTaskIdAndNodeId(int taskId);
+    int addOperationLog(OperationLog operationLog);
 }

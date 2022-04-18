@@ -5,6 +5,7 @@ import com.silentsunshine.blueprintsystem.entity.Edge;
 import com.silentsunshine.blueprintsystem.entity.FlowTask;
 import com.silentsunshine.blueprintsystem.entity.Node;
 import com.silentsunshine.blueprintsystem.service.*;
+import com.silentsunshine.blueprintsystem.utils.Parser;
 import com.silentsunshine.blueprintsystem.vo.BlueprintVO;
 import com.silentsunshine.blueprintsystem.vo.Result;
 import com.silentsunshine.blueprintsystem.vo.TaskVO;
@@ -99,8 +100,9 @@ public class FlowTaskController {
     public Result saveFormData(@RequestBody FormDataParams formDataParams) {
         int id = formDataParams.getId();
         String formData = formDataParams.getFormData();
-        String newFormData = formData.replace("\\", "\\\\");
+        String newFormData = Parser.convertJsonStringfy(formData);
         flowTaskService.updateFormDataById(id, newFormData);
         return Result.success(null);
     }
+
 }
