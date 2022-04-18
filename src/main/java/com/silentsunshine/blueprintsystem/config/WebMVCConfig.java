@@ -12,6 +12,6 @@ public class WebMVCConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         // 跨域配置
-        registry.addMapping("/**").allowedOrigins("https://zqc11.github.io/vue-pure/").allowedHeaders("*");
+        registry.addMapping("/**").allowedOrigins("https://zqc11.github.io").allowedHeaders("*");
     }
 }
