@@ -63,6 +63,8 @@ public class Node implements Serializable {
      */
     private String checkers;
 
+    private String operations;
+
     /**
      * 节点状态: properties.status
      */
@@ -82,12 +84,15 @@ public class Node implements Serializable {
      */
     private int orderNum;
 
+    private int rejectTo;
+
     public Node(NodeModel nodeModel, int taskId) {
         this.id = nodeModel.getId();
         this.taskId = taskId;
         this.description = nodeModel.getProperties().getDescription();
         this.status = nodeModel.getProperties().getStatus();
         this.orderNum = nodeModel.getProperties().getOrderNum();
+        this.rejectTo = nodeModel.getProperties().getRejectTo();
         this.x = nodeModel.getX();
         this.y = nodeModel.getY();
         this.type = nodeModel.getType();
@@ -95,6 +100,7 @@ public class Node implements Serializable {
         this.textX = nodeModel.getText().getX();
         this.textY = nodeModel.getText().getY();
         this.checkers = Parser.unparse(nodeModel.getProperties().getCheckers());
+        this.operations = Parser.unparse(nodeModel.getProperties().getOperations());
     }
 
 }

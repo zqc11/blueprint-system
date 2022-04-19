@@ -17,4 +17,7 @@ public interface FlowTaskMapper extends BaseMapper<FlowTask> {
     @Update("update flow_task set form_data = '${formData}' where id = ${id}")
     int updateFormDataById(@Param("id") int id, @Param("formData") String formData);
 
+    @Update("update flow_task set form_json = '${formJson}' where id = ${id}")
+    int updateFormJsonById(@Param("id") int id, @Param("formJson") String formJson);
+
 }

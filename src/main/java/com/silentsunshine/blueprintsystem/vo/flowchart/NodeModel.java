@@ -30,9 +30,9 @@ public class NodeModel {
         this.x = node.getX();
         this.y = node.getY();
         List<String> checkers = parseUserId(node.getCheckers());
+        List<String> operations = parseUserId(node.getOperations());
         List<String> hasPassed = parseUserId(node.getHasPassed());
         List<String> hasRejected = parseUserId(node.getHasRejected());
-        this.properties = new NodeProperties(node.getDescription(), node.getStatus(), node.getOrderNum(), checkers, hasPassed, hasRejected);
+        this.properties = new NodeProperties(node.getDescription(), node.getStatus(), node.getOrderNum(), node.getRejectTo(), checkers, operations, hasPassed, hasRejected);
     }
-
 }

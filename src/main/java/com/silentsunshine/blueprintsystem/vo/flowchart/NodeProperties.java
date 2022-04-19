@@ -1,6 +1,5 @@
 package com.silentsunshine.blueprintsystem.vo.flowchart;
 
-import com.silentsunshine.blueprintsystem.vo.UserVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +23,9 @@ public class NodeProperties {
      */
     private String status;
     private int orderNum;
+    private int rejectTo;
     private List<String> checkers;
+    private List<String> operations;
     private List<String> hasPassed;
     private List<String> hasRejected;
 }

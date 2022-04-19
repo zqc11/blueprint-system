@@ -6,13 +6,13 @@ import com.silentsunshine.blueprintsystem.entity.FlowTask;
 import com.silentsunshine.blueprintsystem.entity.Node;
 import com.silentsunshine.blueprintsystem.service.*;
 import com.silentsunshine.blueprintsystem.utils.Parser;
-import com.silentsunshine.blueprintsystem.vo.BlueprintVO;
 import com.silentsunshine.blueprintsystem.vo.Result;
 import com.silentsunshine.blueprintsystem.vo.TaskVO;
 import com.silentsunshine.blueprintsystem.vo.flowchart.EdgeModel;
 import com.silentsunshine.blueprintsystem.vo.flowchart.NodeModel;
 import com.silentsunshine.blueprintsystem.vo.params.FlowTaskParams;
 import com.silentsunshine.blueprintsystem.vo.params.FormDataParams;
+import com.silentsunshine.blueprintsystem.vo.params.FormJsonParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,10 +82,6 @@ public class FlowTaskController {
         List<EdgeModel> edges = flowChart.getEdges();
         edgeService.insertEdges(edges, taskId);
 
-        // Blueprint
-        List<BlueprintVO> blueprints = flowTaskParams.getBlueprints();
-        blueprintService.insertBlueprints(blueprints, taskId);
-
         // Permission
         FlowTaskParams.Permission permission = flowTaskParams.getPermission();
         List<String> maintain = permission.getMaintain();
@@ -102,6 +98,15 @@ public class FlowTaskController {
         String formData = formDataParams.getFormData();
         String newFormData = Parser.convertJsonStringfy(formData);
         flowTaskService.updateFormDataById(id, newFormData);
+        return Result.success(null);
+    }
+
+    @PostMapping("/saveFormJson")
+    public Result saveFormJson(@RequestBody FormJsonParams formJsonParams){
+        int id = formJsonParams.getTaskId();
+        String formJson = formJsonParams.getJson();
+        String convertFormJson = Parser.convertJsonStringfy(formJson);
+        flowTaskService.updateFormJsonById(id, convertFormJson);
         return Result.success(null);
     }
 

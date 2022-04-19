@@ -2,8 +2,6 @@ package com.silentsunshine.blueprintsystem.vo.params;
 
 import com.silentsunshine.blueprintsystem.entity.Edge;
 import com.silentsunshine.blueprintsystem.entity.Node;
-import com.silentsunshine.blueprintsystem.vo.BlueprintVO;
-import com.silentsunshine.blueprintsystem.vo.UserVO;
 import com.silentsunshine.blueprintsystem.vo.flowchart.EdgeModel;
 import com.silentsunshine.blueprintsystem.vo.flowchart.NodeModel;
 import lombok.Data;
@@ -20,9 +18,7 @@ public class FlowTaskParams {
 
     private BaseInfo baseInfo;
     private FlowChart flowChart;
-    private FormData formData;
     private Permission permission;
-    private List<BlueprintVO> blueprints;
 
     @Data
     @NoArgsConstructor
@@ -47,11 +43,6 @@ public class FlowTaskParams {
         String desc;
         String title;
         String type;
-    }
-
-    @Data
-    public class FormData {
-        String formDataJson;
     }
 
     @Data

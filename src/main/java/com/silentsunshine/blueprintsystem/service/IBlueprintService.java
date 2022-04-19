@@ -17,7 +17,7 @@ import java.util.List;
 public interface IBlueprintService extends IService<Blueprint> {
     List<Blueprint> getAllByTaskId(int taskId);
 
-    int insertBlueprints(List<BlueprintVO> blueprints, int taskId);
+    int insertBlueprint(BlueprintVO blueprint, int taskId);
 
     int updateDrawData(int id, String drawData);
 

@@ -27,13 +27,9 @@ public class BlueprintServiceImpl extends ServiceImpl<BlueprintMapper, Blueprint
     }
 
     @Override
-    public int insertBlueprints(List<BlueprintVO> blueprints, int taskId) {
-        int count = 0;
-        for (BlueprintVO blueprint : blueprints) {
-            Blueprint newBlueprint = new Blueprint(blueprint, taskId);
-            count += baseMapper.insert(newBlueprint);
-        }
-        return count;
+    public int insertBlueprint(BlueprintVO blueprint, int taskId) {
+        Blueprint newBlueprint = new Blueprint(blueprint, taskId);
+        return baseMapper.insert(newBlueprint);
     }
 
     @Override

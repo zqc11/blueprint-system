@@ -22,9 +22,8 @@ public class FlowTaskServiceImpl extends ServiceImpl<FlowTaskMapper, FlowTask> i
     @Override
     public int insertBackAutoId(FlowTaskParams flowTaskParams) {
         FlowTaskParams.BaseInfo baseInfo = flowTaskParams.getBaseInfo();
-        String formDataJson = flowTaskParams.getFormData().getFormDataJson();
         LocalDateTime now = LocalDateTime.now();
-        FlowTask flowTask = new FlowTask(baseInfo.getTitle(), baseInfo.getDesc(), formDataJson, now, now);
+        FlowTask flowTask = new FlowTask(baseInfo.getTitle(), baseInfo.getDesc(), null, now, now);
         baseMapper.insert(flowTask);
         return flowTask.getId();
     }
@@ -32,5 +31,10 @@ public class FlowTaskServiceImpl extends ServiceImpl<FlowTaskMapper, FlowTask> i
     @Override
     public int updateFormDataById(int id, String formData) {
         return baseMapper.updateFormDataById(id, formData);
+    }
+
+    @Override
+    public int updateFormJsonById(int id, String formJson) {
+        return baseMapper.updateFormJsonById(id, formJson);
     }
 }

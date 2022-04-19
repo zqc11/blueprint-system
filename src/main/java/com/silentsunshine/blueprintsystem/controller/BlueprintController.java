@@ -2,6 +2,7 @@ package com.silentsunshine.blueprintsystem.controller;
 
 import com.silentsunshine.blueprintsystem.service.IBlueprintService;
 import com.silentsunshine.blueprintsystem.vo.Result;
+import com.silentsunshine.blueprintsystem.vo.params.BlueprintParams;
 import com.silentsunshine.blueprintsystem.vo.params.DrawDataParams;
 import com.silentsunshine.blueprintsystem.vo.params.SnapDataParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,15 +67,21 @@ public class BlueprintController {
         return Result.success(null);
     }
 
-    @GetMapping("getDrawData/{id}")
+    @GetMapping("/getDrawData/{id}")
     public Result getDrawData(@PathVariable("id") int id) {
         String data = blueprintService.getDrawData(id);
         return Result.success(data);
     }
 
-    @GetMapping("getSnapData/{id}")
+    @GetMapping("/getSnapData/{id}")
     public Result getSnapData(@PathVariable("id") int id) {
         String data = blueprintService.getSnapData(id);
         return Result.success(data);
+    }
+
+    @PostMapping("/saveBlueprints")
+    public Result saveBlueprints(@RequestBody BlueprintParams blueprintParams) {
+        blueprintService.insertBlueprint(blueprintParams.getBlueprint(), blueprintParams.getTaskId());
+        return Result.success(null);
     }
 }

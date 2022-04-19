@@ -15,7 +15,7 @@ public class EntityGenerator {
     private static final String AUTHOR = "zhouqichun";
     private static final String OUTPUT_DIR = "D://Project/blueprintsystem/src/main/java";
     private static final String PACKAGE_PARENT = "com.silentsunshine.blueprintsystem";
-    private static List<String> tables = Arrays.asList("flow_template");
+    private static List<String> tables = Arrays.asList("node_operation");
 
     public static void main(String[] args) {
         FastAutoGenerator.create(URL, USERNAME, PASSWORD)
