@@ -43,18 +43,30 @@ public class NodeController {
         String userName = userService.getUserById(userId).getName();
         Node node;
         String operation;
+        boolean pass = "or".equals(nodeParams.getCondition()) || nodeParams.getComplete();
 
         // 首先判断是审批通过还是审批驳回
-        if (type.equals("审批通过")) {
-            node = nodeService.updateNodeStatus(launchOrderNum, taskId, "已完成");
-            nodeService.updateNodeStatus(endOrderNum, taskId, "进行中");
-            operation = node.getTitle() + node.getStatus();
-        } else {
-            for (int i = launchOrderNum; i > endOrderNum; i--) {
-                nodeService.updateNodeStatus(i, taskId, "未开始");
+        if ("审批通过".equals(type)) {
+            node = nodeService.getNodeByOrderNumAndTaskId(launchOrderNum, taskId);
+            operation = node.getTitle() + "已完成";
+            if (pass) {
+                nodeService.updateNodeStatus(launchOrderNum, taskId, "已完成", "", node.getCheckers(), 0);
+                nodeService.updateNodeStatus(endOrderNum, taskId, "进行中", "", "", 0);
+            } else {
+                nodeService.updateNodeStatus(launchOrderNum, taskId, "进行中", "", node.getHasPassed() + userId + ",", 0);
             }
-            node = nodeService.updateNodeStatus(endOrderNum, taskId, "被驳回");
-            operation = node.getTitle() + node.getStatus();
+        } else {
+            node = nodeService.getNodeByOrderNumAndTaskId(endOrderNum, taskId);
+            operation = node.getTitle() + "被驳回";
+            if (pass) {
+                for (int i = launchOrderNum; i > endOrderNum; i--) {
+                    nodeService.updateNodeStatus(i, taskId, "未开始", "", "", 0);
+                }
+                nodeService.updateNodeStatus(endOrderNum, taskId, "被驳回", "", "", 0);
+            } else {
+                Node launchNode = nodeService.getNodeByOrderNumAndTaskId(launchOrderNum, taskId);
+                nodeService.updateNodeStatus(launchOrderNum, taskId, "进行中", launchNode.getHasRejected() + userId + ",", "", endOrderNum);
+            }
         }
         OperationLog operationLog = new OperationLog(operation, userName, node.getId(), taskId);
         operationLogService.addOperationLog(operationLog);

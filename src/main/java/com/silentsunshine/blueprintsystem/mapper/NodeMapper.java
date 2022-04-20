@@ -19,8 +19,11 @@ public interface NodeMapper extends BaseMapper<Node> {
     @Select("select * from node where checkers like '%,${id},%'")
     List<Node> getNodeByUserId(Integer userId);
 
-    @Update("update node set status = '${status}' where order_num = '${orderNum}' and task_id = ${taskId}")
-    int updateNodeStatus(int orderNum, int taskId, String status);
+    @Select("select * from node where task_id = ${taskId}")
+    List<Node> getNodeByTaskId(Integer taskId);
+
+    @Update("update node set status = '${status}', has_rejected = '${hasRejected}', has_passed = '${hasPassed}', reject_to = ${rejectTo} where order_num = '${orderNum}' and task_id = ${taskId}")
+    int updateNodeStatus(int orderNum, int taskId, String status, String hasRejected, String hasPassed, int rejectTo);
 
     @Select("select * from node where order_num = ${orderNum} and task_id = ${taskId}")
     Node getNodeByOrderNumAndTaskId(int orderNum, int taskId);

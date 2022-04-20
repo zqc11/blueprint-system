@@ -16,4 +16,6 @@ public class NodeParams {
     private int taskId;
     private String type;
     private String checker;
+    private String condition;
+    private Boolean complete;
 }

@@ -1,6 +1,7 @@
 package com.silentsunshine.blueprintsystem.utils;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 public class Parser {
     public static List<String> parseUserId(String ids) {
         if (ids == null || ids.isEmpty()) {
-            return null;
+            return Collections.emptyList();
         }
         return Arrays.stream(ids.split(","))
                 .filter(id -> id != null && ! id.isEmpty())

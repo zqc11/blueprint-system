@@ -25,7 +25,7 @@ public class UserVO {
     /**
      * 员工性别
      */
-    private Integer gender;
+    private String gender;
 
     /**
      * 所在部门
@@ -52,7 +52,7 @@ public class UserVO {
         this.name = user.getName();
         this.account = user.getAccount();
         this.department = user.getDepartment();
-        this.gender = user.getGender();
+        this.gender = user.getGender() == 1 ? "男" : "女";
         this.mobile = user.getMobile();
     }
 }

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -52,18 +52,16 @@ public class FlowTaskController {
     public Result listTask(@PathVariable("id") Integer id) {
         List<Node> nodes = nodeService.getNodeByUserId(id);
         List<TaskVO> tasks = new ArrayList<>();
-        Map<Integer, List<Node>> taskMap = nodes.stream().collect(Collectors.groupingBy(Node::getTaskId));
+        Set<Integer> taskIdSet = nodes.stream().map(Node::getTaskId).collect(Collectors.toSet());
 
-        for (Map.Entry<Integer, List<Node>> entry : taskMap.entrySet()) {
-            int taskId = entry.getKey();
+        for (Integer taskId : taskIdSet) {
             FlowTask flowTask = flowTaskService.getById(taskId);
-            List<Node> nodeList = entry.getValue();
+            List<Node> nodeList = nodeService.getNodeByTaskId(taskId);
             List<Edge> edgeList = edgeService.getEdgeByTaskId(taskId);
             FlowTaskParams.FlowChart flowChart = new FlowTaskParams.FlowChart(nodeList, edgeList);
             List<Blueprint> blueprints = blueprintService.getAllByTaskId(taskId);
             tasks.add(new TaskVO(flowTask, blueprints, flowChart));
         }
-
         tasks.sort(Comparator.comparing(TaskVO::getModifyDate));
         return Result.success(tasks);
     }
@@ -102,7 +100,7 @@ public class FlowTaskController {
     }
 
     @PostMapping("/saveFormJson")
-    public Result saveFormJson(@RequestBody FormJsonParams formJsonParams){
+    public Result saveFormJson(@RequestBody FormJsonParams formJsonParams) {
         int id = formJsonParams.getTaskId();
         String formJson = formJsonParams.getJson();
         String convertFormJson = Parser.convertJsonStringfy(formJson);

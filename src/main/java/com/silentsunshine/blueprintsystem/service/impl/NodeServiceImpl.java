@@ -25,6 +25,11 @@ public class NodeServiceImpl extends ServiceImpl<NodeMapper, Node> implements IN
     }
 
     @Override
+    public List<Node> getNodeByTaskId(Integer taskId) {
+        return baseMapper.getNodeByTaskId(taskId);
+    }
+
+    @Override
     public int insertNodes(List<NodeModel> nodes, int taskId) {
         int count = 0;
         for (NodeModel node : nodes) {
@@ -35,8 +40,12 @@ public class NodeServiceImpl extends ServiceImpl<NodeMapper, Node> implements IN
     }
 
     @Override
-    public Node updateNodeStatus(int orderNum, int taskId, String status) {
-        baseMapper.updateNodeStatus(orderNum, taskId, status);
+    public void updateNodeStatus(int orderNum, int taskId, String status, String hasRejected, String hasPassed, int rejectTo) {
+        baseMapper.updateNodeStatus(orderNum, taskId, status, hasRejected, hasPassed, rejectTo);
+    }
+
+    @Override
+    public Node getNodeByOrderNumAndTaskId(int orderNum, int taskId) {
         return baseMapper.getNodeByOrderNumAndTaskId(orderNum, taskId);
     }
 }
