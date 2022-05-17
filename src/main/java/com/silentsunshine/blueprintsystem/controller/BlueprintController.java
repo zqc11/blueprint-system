@@ -33,7 +33,7 @@ public class BlueprintController {
     @GetMapping("/getPdfFile/{filename}")
     @CrossOrigin
     public void getPdfFile(@PathVariable("filename") String filename, HttpServletResponse response) {
-        String path = "D:\\Project\\blueprintsystem\\src\\main\\java\\com\\silentsunshine\\blueprintsystem\\controller\\temp\\";
+        String path = "src/temp/";
         File file = new File(path + filename);
         byte[] buffer;
         try {

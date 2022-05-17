@@ -2,7 +2,6 @@ package com.silentsunshine.blueprintsystem.controller;
 
 import com.silentsunshine.blueprintsystem.vo.Result;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,13 +32,13 @@ public class UploadFileController {
         }
         //获取上传文件原来的名称
         String filename = file.getOriginalFilename();
-        String filePath = "D:\\Project\\blueprintsystem\\src\\main\\java\\com\\silentsunshine\\blueprintsystem\\controller\\temp\\";
+        String filePath = "src/temp/";
         File temp = new File(filePath);
         if (! temp.exists()) {
             temp.mkdirs();
         }
 
-        File localFile = new File(filePath + filename);
+        File localFile = new File(temp.getAbsoluteFile() + "/" + filename);
         try {
             //把上传的文件保存至本地
             file.transferTo(localFile);
